@@ -10,7 +10,7 @@ The system is designed to simplify the process of registering, managing, searchi
 
 The Mikono VTC Student Registration System is a web-based application that allows an institution to manage student information digitally instead of relying entirely on manual paperwork.
 
-The project will be developed progressively over a two-week period, starting with a simple frontend and gradually introducing JavaScript, a Python backend, and a relational database.
+The project is developed progressively, starting with a simple frontend and gradually introducing JavaScript, a Python backend, and a relational database.
 
 The project is also part of my personal **software development portfolio** and demonstrates my ability to plan, develop, test, document, and deploy a complete application.
 
@@ -46,7 +46,7 @@ The system is designed around the needs of a vocational training centre offering
 
 ### Initial Courses
 
-The system will support courses such as:
+The system supports courses such as:
 
 * Tailoring & Dressmaking
 * ICT Basic Computer Packages
@@ -54,122 +54,92 @@ The system will support courses such as:
 * Welding & Fabrication
 * Light Motor Vehicle Mechanics
 * Electrical Wiring
-
-Additional courses can be added in the future.
+* Web Development & Design
+* Database Systems & Management
 
 ---
 
-# ✨ Planned Features
+# ✨ Features
 
 ## 👨‍🎓 Student Registration
 
-Staff will be able to register students using information such as:
+Staff can register students using information such as:
 
-* Student ID
-* Full name
-* Gender
-* Date of birth
-* Phone number
-* Email
-* Address
-* Course
-* Enrollment date
+* First Name
+* Last Name
+* Phone Number
+* Email Address
+* Course Selection
+* Enrollment Date
 
 ---
 
 ## 👥 Student Management
 
-The system will allow authorized users to:
+The system allows authorized users to:
 
-* View students
-* Search students
-* Edit student information
-* Delete student records
-* View individual student profiles
+* ✅ View all registered students
+* ✅ Search students by name, course, or phone
+* ✅ Filter students by course
+* ✅ Edit student information
+* ✅ Delete student records
+* ✅ Export student data to CSV
 
 ---
 
 ## 🔎 Student Search
 
-Users will be able to search for students using information such as:
+Users can search for students using:
 
-* Student name
-* Student ID
-* Course
+* Student name (first or last)
+* Course name
 * Phone number
 
----
-
-## 📚 Course Management
-
-The system will associate students with their selected vocational courses.
-
-Courses will be stored separately in the database so that the system can maintain proper relationships between students and courses.
+Real-time filtering with combined search and course filter.
 
 ---
 
-## 📊 Dashboard
+## 📊 Student Statistics
 
-A future dashboard will provide useful statistics such as:
+Live statistics showing:
 
-* Total students
-* Students per course
-* New registrations
-* Active students
-* Course enrollment statistics
-
-Example:
-
-```text
------------------------------------------
-        MIKONO VTC DASHBOARD
------------------------------------------
-
-Total Students        150
-
-ICT Students            35
-Tailoring Students      28
-Beauty Therapy          25
-Welding                 22
-Motor Vehicle           20
-Electrical              20
-
------------------------------------------
-```
+* Total registered students
+* Currently displayed students (after filtering)
 
 ---
 
 # 🛠️ Technology Stack
 
-The project will be developed using the following technologies:
-
 ### Frontend
 
 * HTML5
 * CSS3
-* JavaScript
+* JavaScript (ES6+)
+* Fetch API
 
 ### Backend
 
-* Python
-* Flask or FastAPI
+* Python 3
+* Flask (Web Framework)
+* Flask-CORS
 
 ### Database
 
-* MySQL or PostgreSQL
+* MySQL
+* Relational database design with 3 tables: `students`, `courses`, `enrollments`
 
 ### Development Tools
 
 * Visual Studio Code
+* Git & GitHub
+* MySQL Workbench
 * macOS Terminal
-* Git
-* GitHub
 
 ---
 
-# 🏗️ Planned Architecture
+# 🏗️ Architecture
 
-The final application will follow a basic three-layer architecture:
+The application follows a three-layer architecture:
 
 ```text
              USER
@@ -179,17 +149,17 @@ The final application will follow a basic three-layer architecture:
         │   FRONTEND    │
         │ HTML/CSS/JS   │
         └───────┬───────┘
-                │
+                │ HTTP/JSON
                 ▼
         ┌───────────────┐
         │    BACKEND    │
-        │    Python     │
+        │  Python Flask │
         └───────┬───────┘
-                │
+                │ SQL
                 ▼
         ┌───────────────┐
         │   DATABASE    │
-        │ MySQL/Postgres│
+        │     MySQL     │
         └───────────────┘
 ```
 
@@ -197,359 +167,74 @@ The final application will follow a basic three-layer architecture:
 
 # 📁 Project Structure
 
-The project will initially start with:
-
-```text
-mikono-student-registration/
-│
-├── index.html
-├── style.css
-├── script.js
-├── README.md
-```
-
-As the project develops, the structure will expand into something similar to:
-
 ```text
 mikono-student-registration/
 │
 ├── frontend/
-│   ├── index.html
-│   ├── students.html
-│   ├── style.css
-│   └── script.js
+│   ├── index.html          # Main registration page
+│   ├── style.css           # Styling
+│   └── script.js           # Frontend logic & API calls
 │
 ├── backend/
-│   ├── app.py
-│   ├── routes/
-│   ├── models/
-│   └── services/
+│   ├── app.py              # Flask application
+│   ├── config.py           # Database configuration
+│   ├── requirements.txt    # Python dependencies
+│   └── .env                # Environment variables (not committed)
 │
 ├── database/
-│   └── schema.sql
-│
-├── tests/
+│   └── schema.sql          # MySQL database schema
 │
 ├── screenshots/
+│   ├── registration-form.png
+│   ├── students-table.png
+│   └── backend-connected.png
 │
 ├── .gitignore
-├── requirements.txt
-└── README.md
+├── README.md
+└── requirements.txt
 ```
-
-The final structure may change as development progresses.
 
 ---
 
 # 🗄️ Database Design
 
-The database will use a relational structure.
+The database uses a relational structure with three tables:
 
-The initial database will contain tables such as:
+### Students Table
 
-```text
-students
-courses
-enrollments
-users
-```
-
-### Students
-
-The `students` table will contain information about individual students.
-
-Example fields:
+Stores student personal information:
 
 ```text
-student_id
+student_id (PRIMARY KEY)
 first_name
 last_name
-gender
-date_of_birth
 phone
 email
-address
 created_at
+updated_at
 ```
 
-### Courses
+### Courses Table
 
-The `courses` table will contain available vocational programmes.
-
-Example:
+Stores available vocational courses:
 
 ```text
-course_id
-course_name
+course_id (PRIMARY KEY)
+course_name (UNIQUE)
 description
-duration
+duration_months
 ```
 
-### Enrollments
+### Enrollments Table
 
-The `enrollments` table will connect students with courses.
-
-Example:
+Connects students to courses:
 
 ```text
-enrollment_id
-student_id
-course_id
+enrollment_id (PRIMARY KEY)
+student_id (FOREIGN KEY → students)
+course_id (FOREIGN KEY → courses)
 enrollment_date
-status
-```
-
-This structure allows one student to be associated with a course while keeping student and course information properly organized.
-
----
-
-# 🔐 Security
-
-Security will be considered as the application develops.
-
-Planned security features include:
-
-* User authentication
-* Password hashing
-* Role-based access
-* Input validation
-* Secure database queries
-* Protection against SQL injection
-* Session management
-* Controlled access to student records
-
----
-
-# 👤 User Roles
-
-The system will eventually support different types of users.
-
-### Administrator
-
-Can:
-
-* Manage users
-* Manage courses
-* Manage students
-* View reports
-* Configure the system
-
-### Instructor/Staff
-
-Can:
-
-* Register students
-* View students
-* Search students
-* Update student information
-* View course enrollments
-
-### Student
-
-Future functionality may allow students to:
-
-* View their profile
-* View their course
-* View enrollment information
-* Update selected personal information
-
----
-
-# 🗓️ Development Roadmap
-
-The project will be developed progressively.
-
-## Week 1 — Frontend Development
-
-### Day 1 — Project Planning
-
-* Define project requirements
-* Create project folder
-* Create README
-* Plan application structure
-
-### Day 2 — HTML
-
-* Create registration page
-* Add form fields
-* Add course selection
-* Add navigation
-
-### Day 3 — CSS
-
-* Style registration form
-* Create responsive layout
-* Create cards and buttons
-* Improve typography
-
-### Day 4 — JavaScript
-
-* Form validation
-* Capture form data
-* Display validation messages
-* Handle user interaction
-
-### Day 5 — Student Display
-
-* Display registered students
-* Create student cards/table
-* Add search functionality
-
-### Day 6 — CRUD Practice
-
-Implement:
-
-* Create
-* Read
-* Update
-* Delete
-
-using frontend JavaScript.
-
-### Day 7 — Frontend Review
-
-* Test application
-* Fix bugs
-* Improve UI
-* Organize code
-* Commit work to GitHub
-
----
-
-# Week 2 — Backend & Database
-
-### Day 8 — Database Design
-
-* Design ER diagram
-* Create database
-* Create tables
-* Define relationships
-* Add constraints
-
-### Day 9 — SQL
-
-Practice:
-
-```sql
-CREATE
-INSERT
-SELECT
-UPDATE
-DELETE
-JOIN
-WHERE
-ORDER BY
-GROUP BY
-```
-
-### Day 10 — Python Backend
-
-* Set up Python environment
-* Install backend framework
-* Create application
-* Create routes
-* Test API
-
-### Day 11 — Database Connection
-
-Connect:
-
-```text
-Frontend
-   ↓
-Python Backend
-   ↓
-Database
-```
-
-### Day 12 — Student CRUD
-
-Implement:
-
-```text
-Create student
-View students
-Update student
-Delete student
-```
-
-### Day 13 — Testing & Improvements
-
-* Validate input
-* Handle errors
-* Test database operations
-* Test frontend/backend communication
-* Improve user experience
-
-### Day 14 — Portfolio Preparation
-
-* Clean project structure
-* Write documentation
-* Add screenshots
-* Create GitHub repository
-* Push final project
-* Create project presentation
-* Document lessons learned
-
----
-
-# 🧪 Testing Plan
-
-Testing will be performed throughout development.
-
-Examples:
-
-### Registration Testing
-
-* Can a student be registered?
-* Are required fields validated?
-* Can invalid information be submitted?
-
-### Database Testing
-
-* Can student records be inserted?
-* Can records be retrieved?
-* Can records be updated?
-* Can records be deleted?
-
-### Search Testing
-
-* Can users find students by name?
-* Can users find students by ID?
-* Can users filter by course?
-
-### Security Testing
-
-* Can unauthorized users access protected pages?
-* Are passwords stored securely?
-* Is user input validated?
-
----
-
-# 📸 Screenshots
-
-Screenshots will be added here as development progresses.
-
-Planned screenshots:
-
-# 📸 Screenshots
-
-## Student Registration Form
-![Registration Form](screenshots/registration-form.png)
-
-## Registered Students Table
-![Students Table](screenshots/students-table.png)
-
-
-```text
-1. Home/Dashboard
-2. Student Registration Form
-3. Student List
-4. Student Profile
-5. Search Results
-6. Database Tables
-7. API Testing
-8. Final Application
+status (Active, Completed, Dropped, On Hold)
 ```
 
 ---
@@ -558,23 +243,23 @@ Planned screenshots:
 
 ## Prerequisites
 
-Before running the final application, install:
+Before running the application, ensure you have:
 
-* Python 3
-* MySQL or PostgreSQL
-* Git
-* Visual Studio Code
-* A modern web browser
+* **Python 3.8+** installed
+* **MySQL** installed and running
+* **Git** installed
+* **Visual Studio Code** (recommended)
+* A modern web browser (Chrome, Firefox, Safari)
 
 ---
 
-## Clone the Repository
+## 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/YOUR_USERNAME/mikono-student-registration.git
 ```
 
-Enter the project:
+Enter the project directory:
 
 ```bash
 cd mikono-student-registration
@@ -582,26 +267,43 @@ cd mikono-student-registration
 
 ---
 
-## Frontend
+## 2. Set Up MySQL Database
 
-Open `index.html` in a browser during the initial frontend development stage.
+Open MySQL and run the schema file:
 
-Later, the frontend will communicate with the Python backend.
+```bash
+mysql -u root -p < database/schema.sql
+```
+
+Enter your MySQL password when prompted.
+
+This creates:
+- Database: `mikono_vtc`
+- Tables: `students`, `courses`, `enrollments`
+- Initial data: 8 vocational courses
 
 ---
 
-## Python Environment
+## 3. Set Up Python Backend
+
+Navigate to the backend folder:
+
+```bash
+cd backend
+```
 
 Create a virtual environment:
 
+**macOS/Linux:**
 ```bash
 python3 -m venv venv
+source venv/bin/activate
 ```
 
-Activate it on macOS/Linux:
-
+**Windows:**
 ```bash
-source venv/bin/activate
+python -m venv venv
+venv\Scripts\activate
 ```
 
 Install dependencies:
@@ -612,77 +314,119 @@ pip install -r requirements.txt
 
 ---
 
-# 🗃️ Database Setup
+## 4. Configure Environment Variables
 
-Create the database:
+Create a `.env` file in the `backend/` folder:
 
-```sql
-CREATE DATABASE mikono_vtc;
+```bash
+nano .env
 ```
 
-Select it:
+Add your database credentials:
 
-```sql
-USE mikono_vtc;
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=mikono_vtc
+FLASK_ENV=development
+FLASK_PORT=5000
 ```
 
-The complete database schema will eventually be provided in:
-
-```text
-database/schema.sql
-```
-
-Run the schema to create the required tables.
+Replace `your_mysql_password` with your actual MySQL password.
 
 ---
 
-# ▶️ Running the Application
+## 5. Run the Backend Server
 
-The exact command will depend on the backend framework selected.
-
-For example, with Flask:
+With the virtual environment activated:
 
 ```bash
-python3 app.py
+python app.py
 ```
 
-The application may then be accessible at:
+You should see:
+🚀 Starting Mikono VTC API server...
+📍 Server running on http://localhost:5000
+💾 Connected to database: mikono_vtc
 
-```text
-http://127.0.0.1:5000
+---
+
+## 6. Open the Frontend
+
+Open `frontend/index.html` in your browser:
+
+**Option A:** Double-click the file in your file explorer
+
+**Option B:** Use VS Code Live Server extension
+
+**Option C:** Open directly in browser
+
+---
+
+## 7. Test the Application
+
+1. Fill in the registration form
+2. Click "Register Student"
+3. View the student in the table below
+4. Test search, filter, edit, and delete features
+
+---
+
+# 🧪 API Endpoints
+
+### Health Check
+GET /api/courses
+
+Returns list of available courses.
+
+---
+
+### Get All Students
+GET /api/students
+
+Returns all registered students with their course information.
+
+---
+
+### Register New Student
+POST /api/students
+
+Request body:
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Kamau",
+  "phone": "0712345678",
+  "email": "john@example.com",
+  "course": "ICT Basic Computer Packages",
+  "enrollmentDate": "2026-09-05"
+}
 ```
+
+---
+
+### Update Student
+PUT /api/students/<student_id>
+
+---
+
+### Delete Student
+DELETE /api/students/<student_id>
 
 ---
 
 # 🔄 Git Workflow
 
-Git will be used throughout development.
-
-Basic workflow:
+Basic workflow used during development:
 
 ```bash
 git status
-```
-
-Add changes:
-
-```bash
 git add .
-```
-
-Commit:
-
-```bash
-git commit -m "Add student registration form"
-```
-
-Push:
-
-```bash
+git commit -m "Descriptive commit message"
 git push
 ```
-
-Development will use meaningful commits so that the project history demonstrates how the application was built.
 
 ---
 
@@ -693,16 +437,14 @@ Initial project setup
 Add student registration form
 Add responsive CSS styling
 Add JavaScript form validation
-Add student list
-Implement search functionality
+Add student list with search and filter
+Implement CRUD operations
 Create database schema
-Add Python backend
-Connect backend to database
-Implement student CRUD operations
-Add authentication
-Add dashboard statistics
-Improve error handling
-Add project documentation
+Add Python Flask backend
+Connect frontend to backend API
+Implement student CRUD via API
+Add course filter dropdown
+Export to CSV functionality
 Prepare final portfolio release
 ```
 
@@ -710,50 +452,48 @@ Prepare final portfolio release
 
 # 🎓 Learning Outcomes
 
-By completing this project, I expect to demonstrate practical skills in:
+By completing this project, I demonstrated practical skills in:
 
 ### Web Development
 
-* HTML5
-* CSS3
-* JavaScript
-* Forms
-* DOM manipulation
-* Responsive design
+* HTML5 semantic structure
+* CSS3 styling and responsive design
+* JavaScript DOM manipulation
+* Fetch API for HTTP requests
+* Async/await patterns
+* Form validation
 
 ### Database Systems
 
-* Relational databases
-* SQL
-* Database design
-* Primary keys
-* Foreign keys
-* Relationships
-* CRUD operations
-* Data validation
+* Relational database design
+* SQL (CREATE, INSERT, SELECT, UPDATE, DELETE)
+* Primary and foreign keys
+* Table relationships (one-to-many)
+* Indexes for performance
+* Data normalization
 
 ### Python
 
-* Python programming
-* Backend development
-* APIs
-* Database connectivity
+* Python 3 programming
+* Flask web framework
+* RESTful API design
+* Database connectivity (mysql-connector)
+* Environment variables
 * Error handling
+* JSON serialization
 
 ### Software Engineering
 
 * Requirements analysis
-* Project planning
-* Version control
-* Git/GitHub
-* Testing
-* Debugging
-* Documentation
-* Software architecture
+* Project planning and documentation
+* Version control with Git/GitHub
+* Testing and debugging
+* README documentation
+* Software architecture (3-tier)
 
 ### Entrepreneurship
 
-The project also demonstrates how technology can be used to solve a real institutional problem by digitizing student registration and management.
+The project demonstrates how technology can solve real institutional problems by digitizing student registration and management processes.
 
 ---
 
@@ -761,22 +501,25 @@ The project also demonstrates how technology can be used to solve a real institu
 
 Possible future features include:
 
-* Student login
-* Instructor login
-* Administrator dashboard
-* Student attendance
+* Student login portal
+* Instructor/admin authentication
+* Dashboard with statistics and charts
+* Student attendance tracking
 * Fee/payment tracking
-* Examination results
+* Examination results management
 * Course completion tracking
 * Certificate generation
 * SMS/email notifications
 * Student ID card generation
-* PDF reports
-* Excel/CSV export
+* PDF report generation
 * Advanced analytics
-* Cloud deployment
-* Mobile application
+* Cloud deployment (AWS, Heroku, Railway)
+* Mobile application (Flutter)
 * Role-based permissions
+* Bulk student import (Excel/CSV)
+* Student profile photos
+* Email verification
+* Password reset functionality
 
 ---
 
@@ -785,65 +528,78 @@ Possible future features include:
 This project demonstrates the complete software development lifecycle:
 
 ```text
-PROBLEM
+PROBLEM IDENTIFICATION
    ↓
-REQUIREMENTS
+REQUIREMENTS ANALYSIS
    ↓
-PLANNING
+PROJECT PLANNING
    ↓
-UI DESIGN
+UI/UX DESIGN
    ↓
-FRONTEND
+FRONTEND DEVELOPMENT
    ↓
-DATABASE
+DATABASE DESIGN
    ↓
-BACKEND
+BACKEND DEVELOPMENT
    ↓
-INTEGRATION
+API INTEGRATION
    ↓
-TESTING
+TESTING & DEBUGGING
    ↓
 DOCUMENTATION
    ↓
-DEPLOYMENT
+VERSION CONTROL
+   ↓
+DEPLOYMENT PREPARATION
 ```
 
-Rather than presenting only a piece of code, this project demonstrates the ability to take a real-world problem and develop a working technology solution.
+Rather than presenting only a piece of code, this project demonstrates the ability to take a real-world problem and develop a working technology solution from start to finish.
 
 ---
 
 # 📚 Project Status
 
-**Current Status:** 🟡 In Development
+**Current Status:** 🟢 Fully Functional (MVP Complete)
 
-### Completed
+### Completed ✅
+
 * [x] Project idea defined
 * [x] Requirements identified
 * [x] Initial project structure planned
 * [x] README created
-* [x] HTML registration form ✅
-* [x] CSS styling ✅
-* [x] JavaScript form handling ✅
-* [x] Student display table ✅
-* [x] Search functionality ✅
-* [x] Edit student feature ✅
-* [x] Course filter dropdown ✅
-* [x] Student count statistics ✅
-* [x] Screenshots added ✅
-* [x] MySQL database created ✅
-* [x] Python Flask backend ✅
-* [x] Full-stack integration ✅
-* [x] API endpoints (GET, POST, PUT, DELETE) ✅
+* [x] HTML registration form
+* [x] CSS styling
+* [x] JavaScript form handling
+* [x] Student display table
+* [x] Search functionality
+* [x] Edit student feature
+* [x] Delete student feature
+* [x] Course filter dropdown
+* [x] Student count statistics
+* [x] CSV export functionality
+* [x] MySQL database created
+* [x] Database schema with 3 tables
+* [x] Python Flask backend
+* [x] RESTful API endpoints (GET, POST, PUT, DELETE)
+* [x] Frontend-backend integration
+* [x] Error handling
+* [x] Screenshots added
+* [x] GitHub repository
 
-### In Progress
-* [ ] Student detail view
-* [ ] Dashboard statistics
-* [ ] User authentication
+### In Progress 🟡
 
-### Upcoming
-* [ ] Deploy to cloud
-* [ ] Mobile-responsive improvements
-* [ ] Advanced reporting
+* [ ] Student detail view modal
+* [ ] Dashboard statistics page
+* [ ] User authentication system
+* [ ] Responsive mobile improvements
+
+### Upcoming 🔵
+
+* [ ] Cloud deployment
+* [ ] Advanced reporting features
+* [ ] Student attendance module
+* [ ] Fee tracking system
+* [ ] Certificate generation
 
 ---
 
@@ -851,7 +607,9 @@ Rather than presenting only a piece of code, this project demonstrates the abili
 
 **Farah Salat**
 
-This project is being developed as part of my ongoing software development and digital skills learning journey.
+This project was developed as part of my ongoing software development and digital skills learning journey.
+
+📍 Mombasa, Kenya
 
 ---
 
@@ -859,16 +617,32 @@ This project is being developed as part of my ongoing software development and d
 
 This project is intended primarily for educational and portfolio purposes.
 
-A formal open-source license can be added if the project is later released publicly for reuse.
+---
+
+# ⭐ Acknowledgments
+
+* Mikono Vocational Training Centre for the inspiration
+* Open-source community for tools and libraries
+* MySQL, Flask, and JavaScript documentation
 
 ---
 
-# ⭐ Final Goal
+# 📞 Contact
 
-The ultimate goal is to transform this project from a simple student registration form into a functional **Student Management System for Mikono Vocational Training Centre**.
+For questions or collaboration opportunities, connect via GitHub or LinkedIn.
 
-The finished application should demonstrate that I can independently:
+---
+
+# 🎯 Final Goal
+
+The ultimate goal is to transform this project from a student registration prototype into a fully functional **Student Management System for Mikono Vocational Training Centre**.
+
+The finished application demonstrates that I can independently:
 
 > **Plan → Design → Code → Test → Document → Deploy**
 
 a real-world software solution.
+
+---
+
+**Last Updated:** September 2026
