@@ -52,28 +52,14 @@
 
                     <select id="course" name="course" required>
                         <option value="">-- Select a Course --</option>
-                        <option value="Tailoring & Dressmaking">
-                            Tailoring & Dressmaking
-                        </option>
-                        <option value="ICT Basic Computer Packages">
-                            ICT Basic Computer Packages
-                        </option>
-                        <option value="Beauty Therapy & Salon">
-                            Beauty Therapy & Salon
-                        </option>
-                        <option value="Welding & Fabrication">
-                            Welding & Fabrication
-                        </option>
-                        <option value="Light Motor Vehicle Mechanics">
-                            Light Motor Vehicle Mechanics
-                        </option>
-                        <option value="Electrical Wiring">
-                            Electrical Wiring
-                        <option value="Web Development & Design">
-                            Web Development & Design
-                        <option value="Database Systems & Management">
-                            Database Systems & Management
-                        </option>
+                        <option value="Tailoring & Dressmaking">Tailoring & Dressmaking</option>
+                        <option value="ICT Basic Computer Packages">ICT Basic Computer Packages</option>
+                        <option value="Beauty Therapy & Salon">Beauty Therapy & Salon</option>
+                        <option value="Welding & Fabrication">Welding & Fabrication</option>
+                        <option value="Light Motor Vehicle Mechanics">Light Motor Vehicle Mechanics</option>
+                        <option value="Electrical Wiring">Electrical Wiring</option>
+                        <option value="Web Development & Design">Web Development & Design</option>
+                        <option value="Database Systems & Management">Database Systems & Management</option>
                     </select>
                 </div>
 
@@ -95,7 +81,24 @@
         <section>
             <h2>Registered Students</h2>
 
-            <p>No students registered yet.</p>
+            <button type="button" id="exportBtn"
+                style="background-color: #28a745; color: white; padding: 10px 16px; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; margin-bottom: 15px;">
+                📥 Export to CSV
+            </button>
+
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Phone</th>
+                        <th>Course</th>
+                        <th>Enrollment Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p id="noStudentsMsg">No students registered yet.</p>
 
         </section>
 

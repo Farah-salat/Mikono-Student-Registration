@@ -532,6 +532,15 @@ Screenshots will be added here as development progresses.
 
 Planned screenshots:
 
+# 📸 Screenshots
+
+## Student Registration Form
+![Registration Form](screenshots/registration-form.png)
+
+## Registered Students Table
+![Students Table](screenshots/students-table.png)
+
+
 ```text
 1. Home/Dashboard
 2. Student Registration Form
@@ -808,25 +817,30 @@ Rather than presenting only a piece of code, this project demonstrates the abili
 **Current Status:** 🟡 In Development
 
 ### Completed
-
 * [x] Project idea defined
 * [x] Requirements identified
 * [x] Initial project structure planned
 * [x] README created
+* [x] HTML registration form ✅
+* [x] CSS styling ✅
+* [x] JavaScript form handling ✅
+* [x] Student display table ✅
+* [x] LocalStorage persistence ✅
+* [x] CSV export functionality ✅
+* [x] Delete student functionality ✅
+* [x] Screenshots added ✅
 
 ### In Progress
-
-* [ ] HTML registration form
-* [ ] CSS interface
-* [ ] JavaScript functionality
+* [ ] Search functionality
+* [ ] Edit student feature
+* [ ] Project restructuring (frontend/ folder)
 
 ### Upcoming
-
-* [ ] Database
-* [ ] Python backend
-* [ ] CRUD functionality
-* [ ] Authentication
-* [ ] Dashboard
+* [ ] Database design (Week 2, Day 8)
+* [ ] Python backend (Week 2, Day 10)
+* [ ] CRUD API endpoints
+* [ ] Authentication system
+* [ ] Dashboard statistics
 * [ ] Testing
 * [ ] Deployment
 
