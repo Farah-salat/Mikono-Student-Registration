@@ -828,6 +828,10 @@ Rather than presenting only a piece of code, this project demonstrates the abili
 * [x] LocalStorage persistence ✅
 * [x] CSV export functionality ✅
 * [x] Delete student functionality ✅
+* [x] Search functionality ✅
+* [x] Edit student feature ✅
+* [x] Course filter dropdown ✅
+* [x] Student count statistics ✅
 * [x] Screenshots added ✅
 
 ### In Progress

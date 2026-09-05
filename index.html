@@ -73,6 +73,10 @@
                 <div>
                     <button type="submit">Register Student</button>
                     <button type="reset">Clear Form</button>
+                    <button type="button" id="cancelEditBtn"
+                        style="display: none; background-color: #6c757d; color: white; padding: 10px 16px; border: none; border-radius: 5px; cursor: pointer; font-size: 15px;">
+                        Cancel Edit
+                    </button>
                 </div>
 
             </form>
@@ -85,6 +89,37 @@
                 style="background-color: #28a745; color: white; padding: 10px 16px; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; margin-bottom: 15px;">
                 📥 Export to CSV
             </button>
+
+            <!-- Student count display -->
+            <div
+                style="margin-bottom: 15px; padding: 10px; background-color: #f8f9fa; border-radius: 5px; border-left: 4px solid #007bff;">
+                <strong>📊 Total Students:</strong> <span id="totalStudents">0</span>
+                <span style="margin-left: 20px;">|</span>
+                <strong>Showing:</strong> <span id="showingStudents">0</span>
+            </div>
+
+            <!-- Search input -->
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="searchInput" placeholder="🔍 Search by name, course, or phone..."
+                    style="width: 100%; padding: 10px; font-size: 15px; border: 2px solid #ddd; border-radius: 5px;">
+            </div>
+
+            <!-- Course filter dropdown -->
+            <div style="margin-bottom: 15px;">
+                <label for="courseFilter" style="font-weight: bold; margin-right: 10px;">Filter by Course:</label>
+                <select id="courseFilter"
+                    style="padding: 10px; font-size: 15px; border: 2px solid #ddd; border-radius: 5px; min-width: 250px;">
+                    <option value="">All Courses</option>
+                    <option value="Tailoring & Dressmaking">Tailoring & Dressmaking</option>
+                    <option value="ICT Basic Computer Packages">ICT Basic Computer Packages</option>
+                    <option value="Beauty Therapy & Salon">Beauty Therapy & Salon</option>
+                    <option value="Welding & Fabrication">Welding & Fabrication</option>
+                    <option value="Light Motor Vehicle Mechanics">Light Motor Vehicle Mechanics</option>
+                    <option value="Electrical Wiring">Electrical Wiring</option>
+                    <option value="Web Development & Design">Web Development & Design</option>
+                    <option value="Database Systems & Management">Database Systems & Management</option>
+                </select>
+            </div>
 
             <table id="studentsTable">
                 <thead>
