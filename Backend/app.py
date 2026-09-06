@@ -1,10 +1,14 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from config import Config
 import mysql.connector
 from mysql.connector import Error
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder='../templates',
+    static_folder='../static'
+)
 CORS(app)  # Enable CORS for frontend communication
 
 # Database connection helper
