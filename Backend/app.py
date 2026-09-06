@@ -52,7 +52,7 @@ def get_students():
     try:
         cursor = connection.cursor(dictionary=True)
         query = """
-            SELECT 
+            SELECT
                 s.student_id,
                 s.first_name,
                 s.last_name,
@@ -155,7 +155,7 @@ def update_student(student_id):
 
         # Update student
         update_query = """
-            UPDATE students 
+            UPDATE students
             SET first_name = %s, last_name = %s, phone = %s, email = %s
             WHERE student_id = %s
         """
@@ -177,7 +177,7 @@ def update_student(student_id):
             if course_result:
                 course_id = course_result[0]
                 enrollment_update = """
-                    UPDATE enrollments 
+                    UPDATE enrollments
                     SET course_id = %s, enrollment_date = %s
                     WHERE student_id = %s
                 """
@@ -231,7 +231,7 @@ def search_students():
         cursor = connection.cursor(dictionary=True)
 
         query = """
-            SELECT 
+            SELECT
                 s.student_id,
                 s.first_name,
                 s.last_name,
@@ -248,9 +248,9 @@ def search_students():
 
         if search_term:
             query += """ AND (
-                s.first_name LIKE %s OR 
-                s.last_name LIKE %s OR 
-                s.phone LIKE %s OR 
+                s.first_name LIKE %s OR
+                s.last_name LIKE %s OR
+                s.phone LIKE %s OR
                 c.course_name LIKE %s
             )"""
             search_pattern = f'%{search_term}%'
@@ -285,6 +285,81 @@ def health_check():
         'timestamp': __import__('datetime').datetime.now().isoformat()
     }), 200
 
+
+@app.route('/api/dashboard/stats', methods=['GET'])
+def get_dashboard_stats():
+    """Get dashboard statistics"""
+    connection = get_db_connection()
+    if not connection:
+        return jsonify({'error': 'Database connection failed'}), 500
+
+    try:
+        cursor = connection.cursor(dictionary=True)
+
+        # Total students
+        cursor.execute('SELECT COUNT(*) as total FROM students')
+        total_students = cursor.fetchone()['total']
+
+        # Students per course
+        cursor.execute("""
+            SELECT c.course_name, COUNT(e.student_id) as student_count
+            FROM courses c
+            LEFT JOIN enrollments e ON c.course_id = e.course_id
+            GROUP BY c.course_id, c.course_name
+            ORDER BY student_count DESC
+        """)
+        students_per_course = cursor.fetchall()
+
+        # New registrations this month
+        cursor.execute("""
+            SELECT COUNT(*) as new_this_month
+            FROM enrollments e
+            WHERE MONTH(e.enrollment_date) = MONTH(CURRENT_DATE())
+            AND YEAR(e.enrollment_date) = YEAR(CURRENT_DATE())
+        """)
+        new_this_month = cursor.fetchone()['new_this_month']
+
+        # Recent registrations (this month)
+        cursor.execute("""
+            SELECT 
+                s.first_name,
+                s.last_name,
+                s.phone,
+                c.course_name as course,
+                e.enrollment_date
+            FROM students s
+            INNER JOIN enrollments e ON s.student_id = e.student_id
+            INNER JOIN courses c ON e.course_id = c.course_id
+            WHERE MONTH(e.enrollment_date) = MONTH(CURRENT_DATE())
+            AND YEAR(e.enrollment_date) = YEAR(CURRENT_DATE())
+            ORDER BY e.enrollment_date DESC
+        """)
+        recent_registrations = cursor.fetchall()
+
+        cursor.close()
+        connection.close()
+
+        return jsonify({
+            'total_students': total_students,
+            'students_per_course': students_per_course,
+            'new_this_month': new_this_month,
+            'recent_registrations': recent_registrations
+        }), 200
+
+    except Error as e:
+        return jsonify({'error': str(e)}), 500
+
+
+if __name__ == '__main__':
+    print(f"🚀 Starting Mikono VTC API server...")
+    print(f"📍 Server running on http://localhost:{Config.FLASK_PORT}")
+    print(f"💾 Connected to database: {Config.DB_NAME}")
+    app.run(debug=True, port=Config.FLASK_PORT)
+
+
+if __name__ == '__main__':
+    print(f"🚀 Starting Mikono VTC API server...")
+    # ... rest stays the same
 
 if __name__ == '__main__':
     print(f"🚀 Starting Mikono VTC API server...")

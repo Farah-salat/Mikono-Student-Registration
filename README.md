@@ -427,7 +427,16 @@ git add .
 git commit -m "Descriptive commit message"
 git push
 ```
+## 📊 Dashboard Analytics
 
+The system includes a comprehensive dashboard with:
+
+* **Real-time Statistics**: Total students, new registrations, active courses
+* **Visual Charts**: Pie chart showing student distribution per course
+* **Top Courses**: Ranked table with progress bars and percentages
+* **Recent Activity**: This month's new registrations
+
+![Dashboard](screenshots/dashboard.png)
 ---
 
 # 📋 Example Git Commit Messages
@@ -585,6 +594,10 @@ Rather than presenting only a piece of code, this project demonstrates the abili
 * [x] Error handling
 * [x] Screenshots added
 * [x] GitHub repository
+* [x] Dashboard with statistics ✅
+* [x] Pie chart visualization (Chart.js) ✅
+* [x] Top courses ranking ✅
+* [x] Recent registrations table ✅
 
 ### In Progress 🟡
 
