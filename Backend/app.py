@@ -351,10 +351,17 @@ def get_dashboard_stats():
 
 
 if __name__ == '__main__':
+    import os
+
+    # Get port from environment (Railway sets this)
+    port = int(os.environ.get('PORT', 5000))
+
     print(f"🚀 Starting Mikono VTC API server...")
-    print(f"📍 Server running on http://localhost:{Config.FLASK_PORT}")
+    print(f"📍 Server running on http://0.0.0.0:{port}")
     print(f"💾 Connected to database: {Config.DB_NAME}")
-    app.run(debug=True, port=Config.FLASK_PORT)
+
+    # Run on all network interfaces (required for Railway)
+    app.run(host='0.0.0.0', port=port, debug=False)
 
 
 if __name__ == '__main__':
@@ -362,7 +369,14 @@ if __name__ == '__main__':
     # ... rest stays the same
 
 if __name__ == '__main__':
+    import os
+
+    # Get port from environment (Railway sets this)
+    port = int(os.environ.get('PORT', 5000))
+
     print(f"🚀 Starting Mikono VTC API server...")
-    print(f"📍 Server running on http://localhost:{Config.FLASK_PORT}")
+    print(f"📍 Server running on http://0.0.0.0:{port}")
     print(f"💾 Connected to database: {Config.DB_NAME}")
-    app.run(debug=True, port=Config.FLASK_PORT)
+
+    # Run on all network interfaces (required for Railway)
+    app.run(host='0.0.0.0', port=port, debug=False)
